@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order(stripe_charge)
-    order = Order.new(
+    @order = Order.new(
       email: params[:stripeEmail],
       total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
@@ -45,15 +45,17 @@ class OrdersController < ApplicationController
     enhanced_cart.each do |entry|
       product = entry[:product]
       quantity = entry[:quantity]
-      order.line_items.new(
+      @order.line_items.new(
         product: product,
         quantity: quantity,
         item_price: product.price,
         total_price: product.price * quantity
       )
     end
-    order.save!
-    order
+    @order.save!
+    # Tell the UserMailer to send a welcome email after save
+    OrderMailer.order_email(@order).deliver
+    @order
   end
 
 end
