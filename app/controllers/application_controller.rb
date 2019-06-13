@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authorize
+    unless User.find_by_id(session[:user_id])
+      redirect_to '/'
+    end
+  end
+
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
@@ -38,7 +44,7 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
-   def enhanced_order
+  def enhanced_order
     @enhanced_order ||= @order.line_items.all.map {|item| { product: item.product, quantity: item.quantity } }
   end
   helper_method :enhanced_order
