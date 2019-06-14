@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get '/register' => 'user#new'
   post '/users' => 'user#create'
+
+  post '/products/:id/reviews', to: 'products#create_review', as: 'reviews'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -84,4 +84,18 @@ main section.products-show {
   }
 }
 
-
+.review {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px 5px;
+}
+.review:hover {
+  border-color: #999;
+}
+.stars {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 40px;
+}
