@@ -8,4 +8,12 @@
   <div class="col-sm-4 stars">
   <%= rating.to_s %> stars
   </div>
+  <% if current_user %>
+  <% if current_user.id == creator %>
+  <%= form_for :products, url: destroy_review_path(review_id) do |form| %>
+  <%= form.submit 'Delete', class: 'btn btn-danger' %>
+  <%end%>
+  <%end%>
+  <%end%>
 </div>
+

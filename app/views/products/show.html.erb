@@ -32,7 +32,7 @@
     <h2 class="page-header">Reviews</h2>
     <div>
     <% @reviews.each do |review| %>
-      <%= render 'review', description: review[:description], name: review[:name], rating: review[:rating].to_i %>
+      <%= render 'review', review_id: review[:id], description: review[:description], name: review[:name], rating: review[:rating].to_i, creator: review[:creator] %>
     <% end %>
     </div>
   </article>

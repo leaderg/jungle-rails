@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/users' => 'user#create'
 
   post '/products/:id/reviews', to: 'products#create_review', as: 'reviews'
+  post '/products/reviews/:id', to: 'products#destroy_review', as: 'destroy_review'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
